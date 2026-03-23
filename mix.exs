@@ -39,7 +39,7 @@ defmodule Flake.MixProject do
   defp package do
     [
       name: "flake",
-      licenses: ["GPL-3.0-or-later"],
+      licenses: ["MIT"],
       links: %{"Github" => "https://github.com/slezakattack/flake"}
     ]
   end
