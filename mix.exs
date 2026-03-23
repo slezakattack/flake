@@ -7,7 +7,7 @@ defmodule Flake.MixProject do
       name: "Flake",
       description: "Generate 64-bit unique, timestamp sortable, identifiers.",
       source_url: "https://github.com/slezakattack/flake",
-      version: "0.1.0",
+      version: "0.1.1",
       elixir: "~> 1.16",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
