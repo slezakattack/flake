@@ -60,12 +60,13 @@ defmodule Flake.Worker do
       <<time::34, state.machine_id::8, state.worker_id::6, state.counter::16>>
 
     if flake_id > state.last_flake do
-      new_state = %State{
+      new_state =
         state
-        | counter: rem(state.counter + 1, @max_counter),
+        |> Map.merge(%{
+          counter: rem(state.counter + 1, @max_counter),
           total_calls: state.total_calls + 1,
           last_flake: flake_id
-      }
+        })
 
       {:reply, {:ok, flake_id}, new_state}
     else

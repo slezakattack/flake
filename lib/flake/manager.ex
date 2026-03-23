@@ -92,13 +92,14 @@ defmodule Flake.Manager do
       "Started flake service with #{total_workers} workers and machine id of #{machine_id}."
     )
 
-    new_state = %State{
+    new_state =
       state
-      | machine_id: machine_id,
+      |> Map.merge(%{
+        machine_id: machine_id,
         started: true,
         total_workers: total_workers,
         workers: workers
-    }
+      })
 
     {:reply, :ok, new_state}
   end
