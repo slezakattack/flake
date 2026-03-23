@@ -6,8 +6,8 @@ defmodule Flake.MixProject do
       app: :flake,
       name: "Flake",
       description: "Generate 64-bit unique, timestamp sortable, identifiers.",
-      source_url: "https://github.com/goodgamechat/flake",
-      version: "0.1.0",
+      source_url: "https://github.com/slezakattack/flake",
+      version: "0.1.1",
       elixir: "~> 1.16",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
@@ -39,8 +39,8 @@ defmodule Flake.MixProject do
   defp package do
     [
       name: "flake",
-      licenses: ["GPL-3.0-or-later"],
-      links: %{"Github" => "https://github.com/goodgamechat/flake"}
+      licenses: ["MIT"],
+      links: %{"Github" => "https://github.com/slezakattack/flake"}
     ]
   end
 end

@@ -1,22 +1,3 @@
-### ----------------------------------------------------------------------------
-###
-###  flake, Copyright (C) 2024  Michael Slezak
-###
-###  This program is free software: you can redistribute it and/or modify
-###  it under the terms of the GNU General Public License as published by
-###  the Free Software Foundation, either version 3 of the License, or
-###  (at your option) any later version.
-###
-###  This program is distributed in the hope that it will be useful,
-###  but WITHOUT ANY WARRANTY; without even the implied warranty of
-###  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-###  GNU General Public License for more details.
-###
-###  You should have received a copy of the GNU General Public License
-###  along with this program.  If not, see <https://www.gnu.org/licenses/>.
-###
-### ----------------------------------------------------------------------------
-
 defmodule Flake.Worker do
   use GenServer, restart: :temporary
   @moduledoc false
@@ -60,12 +41,13 @@ defmodule Flake.Worker do
       <<time::34, state.machine_id::8, state.worker_id::6, state.counter::16>>
 
     if flake_id > state.last_flake do
-      new_state = %State{
+      new_state =
         state
-        | counter: rem(state.counter + 1, @max_counter),
+        |> Map.merge(%{
+          counter: rem(state.counter + 1, @max_counter),
           total_calls: state.total_calls + 1,
           last_flake: flake_id
-      }
+        })
 
       {:reply, {:ok, flake_id}, new_state}
     else
